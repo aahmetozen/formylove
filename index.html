@@ -1,0 +1,394 @@
+
+<!-- <img src="GÖRSEL_LİNKİN_BURAYA" alt="Çiçek Buketi" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);"> -->
+   
+<img src="https://example.com/benim-cicek-buketim.jpg" alt="Çiçek Buketi" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Özel Sürpriz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .welcome-screen {
+            display: block;
+        }
+
+        .gift-screen {
+            display: none;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            font-size: 1.3rem;
+            color: #495057;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .magic-word {
+            color: #d63384;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 3px solid #f8d7da;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #d63384;
+            box-shadow: 0 0 20px rgba(214, 51, 132, 0.3);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #d63384, #e91e63);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(214, 51, 132, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(214, 51, 132, 0.4);
+        }
+
+        .gift-title {
+            color: #d63384;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+
+        .flower-bouquet {
+            margin: 30px 0;
+            animation: gentle-sway 3s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bouquet-svg {
+            width: 450px;
+            height: 500px;
+            max-width: 95vw;
+        }
+
+        @keyframes gentle-sway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .note-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            margin-top: 20px;
+        }
+
+        .note-btn:hover {
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .note-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #495057;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            color: #d63384;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2000;
+        }
+
+        .falling-element {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall 2s linear forwards;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 1rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .gift-title {
+                font-size: 1.8rem;
+            }
+            
+            .bouquet-svg {
+                width: 320px;
+                height: 380px;
+            }
+            
+            .question {
+                font-size: 1.1rem;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .note-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bouquet-svg {
+                width: 280px;
+                height: 320px;
+            }
+            
+            .gift-title {
+                font-size: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-screen" id="welcomeScreen">
+            <h1>💝 Hediyeni Görmek İçin Cevapla 💝</h1>
+            <div class="question">
+                Benim sende en sevdiğim laf nedir?<br>
+                <span class="magic-word">(sihirli kelime)</span>
+            </div>
+            <input type="text" id="answerInput" placeholder="Cevabını buraya yaz...">
+            <div class="error-message" id="errorMessage">
+                Hmm, bu doğru cevap değil. Tekrar dene! 💕
+            </div>
+            <br>
+            <button class="btn" onclick="checkAnswer()">Cevapla</button>
+        </div>
+
+        <div class="gift-screen" id="giftScreen">
+            <h1 class="gift-title">🎉 İlk İşin Hayırlı Olsun! 🎉</h1>
+            <div class="flower-bouquet">
+                <img src="Adsiz tasarim (4).png" alt="">
+            </div>
+            <button class="btn note-btn" onclick="showNote()">Notu Görmek İçin Tıkla</button>
+        </div>
+    </div>
+
+    <div class="modal" id="noteModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeNote()">&times;</button>
+            <div class="note-text">
+                İlk işin hayırlı olsun aşkım! Yürüdüğün yolda her zaman yanında olacağım. Yolun ister güllerle dolu aydınlık olsun, ister dikenlerle dolu kasvetli ve karanlık olsun, elini soluna koyduğunda orada hep ben olacağım.
+                <br><br>
+                Her bir başarında, kaybedişinde, mutluluğunda ve hüznünde ne olursa olsun seni bırakmayacağım. Seni canı gönülden tebrik ediyorum! Bu onca emeğinin ufak bir başlangıcı sadece, daha güzel yerlere geleceğine inanıyorum.
+                <br><br>
+                Seni çok seviyorum eşim. 💕
+            </div>
+            <div class="signature">
+                - Seni seven kocan 💖
+            </div>
+        </div>
+    </div>
+
+    <div class="animation-container" id="animationContainer"></div>
+
+    <script>
+        function checkAnswer() {
+            const input = document.getElementById('answerInput');
+            const answer = input.value.trim().toLowerCase();
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (answer === 'kocam') {
+                document.getElementById('welcomeScreen').style.display = 'none';
+                document.getElementById('giftScreen').style.display = 'block';
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.style.display = 'block';
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function showNote() {
+            document.getElementById('noteModal').style.display = 'flex';
+            createFallingAnimation();
+        }
+
+        function closeNote() {
+            document.getElementById('noteModal').style.display = 'none';
+        }
+
+        function createFallingAnimation() {
+            const container = document.getElementById('animationContainer');
+            const elements = ['🌹', '💖', '🌸', '💕', '🌺', '💗', '🌷', '💝'];
+            
+            // Animasyonu temizle
+            container.innerHTML = '';
+            
+            // 50 adet element oluştur
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const element = document.createElement('div');
+                    element.className = 'falling-element';
+                    element.textContent = elements[Math.floor(Math.random() * elements.length)];
+                    element.style.left = Math.random() * 100 + '%';
+                    element.style.animationDelay = Math.random() * 0.5 + 's';
+                    element.style.animationDuration = (Math.random() * 1 + 1.5) + 's';
+                    
+                    container.appendChild(element);
+                    
+                    // Element animasyon bitince kaldır
+                    setTimeout(() => {
+                        if (element.parentNode) {
+                            element.parentNode.removeChild(element);
+                        }
+                    }, 2500);
+                }, i * 50);
+            }
+            
+            // 2 saniye sonra tüm animasyonu temizle
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 4000);
+        }
+
+        // Enter tuşu ile cevaplama
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+
+        // Modal dışına tıklayınca kapatma
+        document.getElementById('noteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeNote();
+            }
+        });
+    </script>
+</body>
+</html>
